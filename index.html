@@ -1,0 +1,641 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>CorpRisk Sustainability Advisors | Strategic Risk & Sustainability Consultancy</title>
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link href="https://fonts.googleapis.com/css2?family=Playfair+Display:ital,wght@0,400;0,600;0,700;1,400;1,600&family=Source+Sans+3:wght@300;400;500;600&display=swap" rel="stylesheet">
+<style>
+:root {
+ --navy: #002147;
+ --navy2: #0D2D5E;
+ --gold: #B08D57;
+ --gold-l: #C9A96E;
+ --teal: #007A8A;
+ --green: #2A6B4A;
+ --white: #FFFFFF;
+ --off: #F9F8F6;
+ --cream: #F0EDE7;
+ --ink: #111111;
+ --body: #3A3A3A;
+ --muted: #767676;
+ --rule: #E0DBD4;
+ --rule2: #C8C2BA;
+ --g: 7%;
+ --max: 1200px;
+ --fd: 'Playfair Display', Georgia, serif;
+ --fb: 'Source Sans 3', system-ui, sans-serif;
+}
+*,*::before,*::after{box-sizing:border-box;margin:0;padding:0}
+html{scroll-behavior:smooth;font-size:16px}
+body{font-family:var(--fb);color:var(--ink);background:var(--white);overflow-x:hidden;-webkit-font-smoothing:antialiased}
+a{color:inherit;text-decoration:none}
+.wrap{max-width:var(--max);margin:0 auto;padding:0 var(--g)}
+
+/* ── UTILITIES ── */
+.eyebrow{display:flex;align-items:center;gap:12px;font-size:10px;font-weight:600;letter-spacing:4px;text-transform:uppercase;color:var(--gold);margin-bottom:18px}
+.eyebrow::before{content:'';display:block;width:28px;height:1.5px;background:var(--gold);flex-shrink:0}
+h2.disp{font-family:var(--fd);font-size:clamp(28px,3.2vw,44px);font-weight:600;line-height:1.15;color:var(--navy);letter-spacing:-.3px}
+h2.disp em{font-style:italic;color:var(--gold);font-weight:400}
+.lead{font-size:15.5px;font-weight:300;line-height:1.9;color:var(--muted);max-width:540px}
+.btn{display:inline-flex;align-items:center;gap:8px;font-family:var(--fb);font-size:11px;font-weight:600;letter-spacing:2.5px;text-transform:uppercase;padding:13px 28px;border:none;cursor:pointer;transition:all .22s ease}
+.btn-n{background:var(--navy);color:var(--white)}
+.btn-n:hover{background:#003266;transform:translateY(-1px);box-shadow:0 6px 20px rgba(0,33,71,.18)}
+.btn-g{background:transparent;color:var(--navy);border:1.5px solid var(--navy)}
+.btn-g:hover{background:var(--navy);color:var(--white)}
+.btn svg{width:14px;height:14px;flex-shrink:0}
+
+/* ── REVEAL ── */
+.rv{opacity:0;transform:translateY(22px);transition:opacity .7s ease,transform .7s ease}
+.rv.in{opacity:1;transform:translateY(0)}
+.d1{transition-delay:.08s}.d2{transition-delay:.16s}.d3{transition-delay:.24s}
+.d4{transition-delay:.32s}.d5{transition-delay:.40s}.d6{transition-delay:.48s}
+
+/* ── NAV ── */
+#nav{position:fixed;top:0;left:0;right:0;z-index:200;background:rgba(255,255,255,.97);backdrop-filter:blur(10px);border-bottom:1px solid var(--rule);transition:box-shadow .3s}
+#nav.up{box-shadow:0 2px 24px rgba(0,33,71,.09)}
+.nav-in{display:flex;align-items:center;justify-content:space-between;height:66px;padding:0 var(--g);max-width:var(--max);margin:0 auto}
+.brand{display:flex;flex-direction:column;line-height:1}
+.brand-p{font-size:15px;font-weight:600;letter-spacing:3px;color:var(--navy);text-transform:uppercase}
+.brand-s{font-size:8.5px;font-weight:400;letter-spacing:2.5px;color:var(--gold);text-transform:uppercase;margin-top:3px}
+.nav-ul{display:flex;align-items:center;gap:32px;list-style:none}
+.nav-ul a{font-size:11px;font-weight:600;letter-spacing:1.5px;text-transform:uppercase;color:var(--muted);transition:color .2s;position:relative;padding-bottom:2px}
+.nav-ul a::after{content:'';position:absolute;bottom:-2px;left:0;width:0;height:1.5px;background:var(--gold);transition:width .25s}
+.nav-ul a:hover,.nav-ul a.on{color:var(--navy)}
+.nav-ul a:hover::after,.nav-ul a.on::after{width:100%}
+.nav-cta{font-size:10px;font-weight:600;letter-spacing:2px;text-transform:uppercase;background:var(--navy);color:var(--white);padding:9px 22px;transition:background .2s}
+.nav-cta:hover{background:var(--gold)}
+
+/* ── HERO ── */
+#hero{padding-top:66px;min-height:100vh;display:flex;flex-direction:column;background:var(--white)}
+.hero-stripe{height:3px;background:linear-gradient(90deg,var(--navy) 55%,var(--gold) 100%)}
+.hero-grid{display:grid;grid-template-columns:1fr 1fr;flex:1;min-height:calc(100vh - 69px)}
+.hero-l{padding:84px var(--g) 84px;display:flex;flex-direction:column;justify-content:center;border-right:1px solid var(--rule)}
+.hero-ov{font-size:10px;font-weight:600;letter-spacing:5px;text-transform:uppercase;color:var(--gold);margin-bottom:26px;animation:fu .8s .1s both}
+.hero-h1{font-family:var(--fd);font-size:clamp(36px,4.2vw,58px);font-weight:600;line-height:1.08;color:var(--navy);letter-spacing:-.5px;animation:fu .8s .25s both}
+.hero-h1 em{font-style:italic;color:var(--gold);font-weight:400}
+.hero-bar{width:48px;height:2px;background:var(--gold);margin:26px 0;animation:fu .8s .4s both}
+.hero-copy{font-size:16px;font-weight:300;line-height:1.9;color:var(--body);max-width:490px;animation:fu .8s .5s both}
+.hero-acts{display:flex;gap:12px;margin-top:36px;animation:fu .8s .65s both}
+.hero-r{background:var(--navy);padding:84px 7%;display:flex;flex-direction:column;justify-content:center;position:relative;overflow:hidden}
+.hero-r::before{content:'';position:absolute;bottom:-90px;right:-90px;width:380px;height:380px;border:1px solid rgba(176,141,87,.1);border-radius:50%}
+.hero-r::after{content:'';position:absolute;bottom:-30px;right:-30px;width:240px;height:240px;border:1px solid rgba(176,141,87,.07);border-radius:50%}
+.hero-rl{font-size:9px;font-weight:600;letter-spacing:4px;text-transform:uppercase;color:rgba(176,141,87,.65);margin-bottom:34px;animation:fu .8s .35s both}
+.stats{display:grid;grid-template-columns:1fr 1fr;animation:fu .8s .5s both}
+.stat{padding:26px 0;border-bottom:1px solid rgba(255,255,255,.07)}
+.stat:nth-child(odd){padding-right:26px;border-right:1px solid rgba(255,255,255,.07)}
+.stat:nth-child(even){padding-left:26px}
+.stat:nth-last-child(-n+2){border-bottom:none}
+.stat-n{font-family:var(--fd);font-size:42px;font-weight:600;line-height:1;color:var(--gold);margin-bottom:7px}
+.stat-l{font-size:11px;font-weight:400;line-height:1.5;color:rgba(255,255,255,.42);text-transform:uppercase;letter-spacing:1px}
+.pillars{margin-top:38px;animation:fu .8s .65s both}
+.pillars-lbl{font-size:9px;font-weight:600;letter-spacing:3px;text-transform:uppercase;color:rgba(255,255,255,.28);margin-bottom:14px}
+.pr{display:flex;align-items:center;gap:12px;padding:10px 0;border-bottom:1px solid rgba(255,255,255,.06);font-size:13px;font-weight:300;color:rgba(255,255,255,.72)}
+.pr:last-child{border-bottom:none}
+.pd{width:5px;height:5px;border-radius:50%;background:var(--gold);flex-shrink:0}
+@keyframes fu{from{opacity:0;transform:translateY(18px)}to{opacity:1;transform:translateY(0)}}
+
+/* ── TICKER ── */
+.ticker{background:var(--navy);padding:11px 0;overflow:hidden;border-bottom:1px solid rgba(176,141,87,.2)}
+.t-track{display:flex;animation:tick 32s linear infinite;width:max-content}
+.t-item{display:flex;align-items:center;gap:10px;padding:0 38px;white-space:nowrap;font-size:10px;font-weight:600;letter-spacing:3px;text-transform:uppercase;color:rgba(255,255,255,.4)}
+.t-item .g{color:var(--gold)}
+@keyframes tick{from{transform:translateX(0)}to{transform:translateX(-50%)}}
+
+/* ── ABOUT ── */
+#about{padding:108px 0;background:var(--white)}
+.about-g{display:grid;grid-template-columns:5fr 7fr;gap:80px;align-items:start}
+.about-sticky{position:sticky;top:96px}
+.ablock{padding:34px 0;border-bottom:1px solid var(--rule)}
+.ablock:first-child{padding-top:0}.ablock:last-child{border-bottom:none}
+.ablock-n{font-family:var(--fd);font-size:11px;color:var(--gold);letter-spacing:2px;margin-bottom:10px;font-style:italic}
+.ablock h3{font-family:var(--fd);font-size:21px;font-weight:600;color:var(--navy);margin-bottom:11px;line-height:1.25}
+.ablock p{font-size:14.5px;font-weight:300;line-height:1.85;color:var(--body)}
+
+/* ── SERVICES ── */
+#services{padding:108px 0;background:var(--off)}
+.sv-intro{display:grid;grid-template-columns:1fr 1fr;gap:80px;align-items:end;margin-bottom:60px}
+.sv-ir{display:flex;justify-content:flex-end;align-items:flex-end}
+.sv-item{display:grid;grid-template-columns:60px 1fr auto;align-items:start;gap:26px;padding:38px 0;border-bottom:1px solid var(--rule);position:relative;transition:background .2s;cursor:default}
+.sv-item:first-child{border-top:1px solid var(--rule)}
+.sv-item::before{content:'';position:absolute;left:-7%;right:-7%;top:0;bottom:0;background:var(--white);opacity:0;transition:opacity .25s;z-index:0;pointer-events:none}
+.sv-item:hover::before{opacity:1}
+.sv-item>*{position:relative;z-index:1}
+.sv-n{font-family:var(--fd);font-size:13px;font-style:italic;color:var(--gold);padding-top:4px;letter-spacing:1px}
+.sv-c h3{font-family:var(--fd);font-size:21px;font-weight:600;color:var(--navy);margin-bottom:9px;line-height:1.25}
+.sv-c p{font-size:14px;font-weight:300;line-height:1.8;color:var(--body);max-width:560px}
+.sv-tags{display:flex;flex-wrap:wrap;gap:6px;margin-top:13px}
+.sv-tag{font-size:9px;font-weight:600;letter-spacing:2px;text-transform:uppercase;color:var(--navy);background:var(--cream);padding:4px 10px;border-radius:1px}
+.sv-arr{font-size:18px;color:var(--rule2);padding-top:2px;transition:color .2s,transform .2s}
+.sv-item:hover .sv-arr{color:var(--gold);transform:translateX(4px)}
+
+/* ── INSIGHTS ── */
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+/* Featured */
+
+
+.ic-as-l{font-size:11px;color:rgba(255,255,255,.38);margin-top:6px;text-transform:uppercase;letter-spacing:2px}
+
+/* ── CASE STUDIES ── */
+
+
+
+
+
+
+
+
+.cs-m h3{font-family:var(--fd);font-size:18px;font-weight:600;color:var(--navy);margin-bottom:11px;line-height:1.35}
+.cs-m p{font-size:13.5px;font-weight:300;line-height:1.8;color:var(--body)}
+
+
+
+
+
+
+/* ── CONTACT ── */
+#contact{padding:108px 0;background:var(--white)}
+.ct-g{display:grid;grid-template-columns:5fr 7fr;gap:80px;align-items:start}
+.ct-sticky{position:sticky;top:96px}
+.ct-d{display:flex;align-items:flex-start;gap:16px;padding:17px 0;border-bottom:1px solid var(--rule)}
+.ct-d:last-child{border-bottom:none}
+.ct-dk{font-size:9px;font-weight:600;letter-spacing:3px;text-transform:uppercase;color:var(--muted);min-width:70px;padding-top:2px}
+.ct-dv{font-size:14px;font-weight:300;color:var(--body);line-height:1.6}
+.f-lbl{font-size:9px;font-weight:600;letter-spacing:4px;text-transform:uppercase;color:var(--gold);padding:18px 0;border-bottom:1px solid var(--rule);margin-bottom:22px}
+.f-row{display:grid;grid-template-columns:1fr 1fr;gap:18px}
+.f-row.full{grid-template-columns:1fr}
+.fg{display:flex;flex-direction:column;gap:7px;margin-bottom:18px}
+.fg label{font-size:9.5px;font-weight:600;letter-spacing:2px;text-transform:uppercase;color:var(--muted)}
+.fg input,.fg select,.fg textarea{background:var(--off);border:1px solid var(--rule);padding:13px 16px;font-family:var(--fb);font-size:14px;font-weight:300;color:var(--ink);outline:none;transition:border-color .2s,background .2s;border-radius:0;-webkit-appearance:none;resize:vertical}
+.fg input::placeholder,.fg textarea::placeholder{color:#BBB}
+.fg input:focus,.fg select:focus,.fg textarea:focus{border-color:var(--navy);background:var(--white)}
+.f-foot{display:flex;justify-content:space-between;align-items:center;padding-top:18px;border-top:1px solid var(--rule)}
+.f-priv{font-size:11px;font-weight:300;color:var(--muted);line-height:1.5;max-width:260px}
+
+/* ── FOOTER ── */
+footer{background:var(--navy);border-top:3px solid var(--gold)}
+.ft-top{padding:60px 0;display:grid;grid-template-columns:2fr 1fr 1fr 1fr;gap:48px;border-bottom:1px solid rgba(255,255,255,.08)}
+.ft-wm{font-size:14px;font-weight:600;letter-spacing:4px;color:var(--white);text-transform:uppercase;margin-bottom:4px}
+.ft-tl{font-size:9px;font-weight:400;letter-spacing:3px;color:var(--gold);text-transform:uppercase;margin-bottom:18px}
+.ft-desc{font-size:13px;font-weight:300;line-height:1.8;color:rgba(255,255,255,.38);max-width:300px}
+.ft-col h4{font-size:9px;font-weight:600;letter-spacing:3px;text-transform:uppercase;color:rgba(255,255,255,.28);margin-bottom:16px}
+.ft-col ul{list-style:none;display:flex;flex-direction:column;gap:10px}
+.ft-col ul li a{font-size:13px;font-weight:300;color:rgba(255,255,255,.52);transition:color .2s}
+.ft-col ul li a:hover{color:var(--gold)}
+.ft-bot{padding:20px 0;display:flex;justify-content:space-between;align-items:center}
+.ft-copy{font-size:11px;color:rgba(255,255,255,.2);font-weight:300}
+.ft-leg{display:flex;gap:22px}
+.ft-leg a{font-size:10px;color:rgba(255,255,255,.2);font-weight:300;transition:color .2s}
+.ft-leg a:hover{color:rgba(255,255,255,.5)}
+
+/* ── RESPONSIVE ── */
+@media(max-width:960px){
+ .hero-grid,.about-g,.sv-intro,.po-intro,.ct-g{grid-template-columns:1fr}
+ .hero-r{display:none}.about-sticky,.ct-sticky{position:static}
+ .sv-ir{justify-content:flex-start}
+ .sv-item{grid-template-columns:40px 1fr auto;gap:14px}
+ 
+ 
+ 
+ .cs-l,
+ .ft-top{grid-template-columns:1fr 1fr}.ft-brand-block{grid-column:1/-1}
+ .nav-ul{display:none}
+ .f-row{grid-template-columns:1fr}
+ .ft-bot{flex-direction:column;gap:12px;text-align:center}
+ 
+}
+</style>
+</head>
+<body>
+
+<!-- NAV -->
+<nav id="nav">
+ <div class="nav-in">
+ <a href="#hero" class="brand">
+ <div class="brand-p">CorpRisk</div>
+ <div class="brand-s">Sustainability Advisors</div>
+ </a>
+ <ul class="nav-ul">
+ <li><a href="#about">About</a></li>
+ <li><a href="#services">Services</a></li>
+ 
+ 
+ <li><a href="#contact">Contact</a></li>
+ </ul>
+ <a href="#contact" class="nav-cta">Engage Us</a>
+ </div>
+</nav>
+
+<!-- HERO -->
+<section id="hero">
+ <div class="hero-stripe"></div>
+ <div class="hero-grid">
+ <div class="hero-l">
+ <div class="hero-ov">Strategic Risk &amp; Sustainability Consultancy</div>
+ <h1 class="hero-h1">Strengthening Enterprise<br>Performance Through <em>Resilience.</em></h1>
+ <div class="hero-bar"></div>
+ <p class="hero-copy">We partner with organizations across the <strong>Caribbean and North America</strong> to navigate uncertainty, optimize governance structures, and embed resilience across all levels of operation. Our advisory aligns project portfolios, enterprise risks, and sustainability goals to drive long-term value creation.</p>
+ <div class="hero-acts">
+ <a href="#services" class="btn btn-n">Our Services <svg viewBox="0 0 14 14" fill="none"><path d="M1 7h12M7 1l6 6-6 6" stroke="currentColor" stroke-width="1.5" stroke-linecap="round"/></svg></a>
+ <a href="#about" class="btn btn-g" onclick="document.getElementById('about').scrollIntoView({behavior:'smooth'});return false;">Our Approach</a>
+ </div>
+ </div>
+ <div class="hero-r">
+ <div class="hero-rl">What We Deliver</div>
+ <div style="display:inline-flex;align-items:center;gap:8px;background:rgba(176,141,87,0.12);border:1px solid rgba(176,141,87,0.25);padding:7px 14px;margin-bottom:24px;font-size:10px;font-weight:600;letter-spacing:2px;text-transform:uppercase;color:var(--gold);">📍 Caribbean &amp; North America</div>
+ <div class="stats">
+ <div class="stat"><div class="stat-n">ERM</div><div class="stat-l">Enterprise Risk Management Frameworks</div></div>
+ <div class="stat"><div class="stat-n">ESG</div><div class="stat-l">Sustainability Strategy &amp; Reporting</div></div>
+ <div class="stat"><div class="stat-n">PMO</div><div class="stat-l">Project Portfolio Governance</div></div>
+ <div class="stat"><div class="stat-n">BCM</div><div class="stat-l">Business Continuity &amp; Resilience</div></div>
+ </div>
+ <div class="pillars">
+ <div class="pillars-lbl">Core Practice Areas</div>
+ <div class="pr"><div class="pd"></div>Integrated Governance &amp; Risk</div>
+ <div class="pr"><div class="pd"></div>Project Management &amp; Portfolio Oversight</div>
+ <div class="pr"><div class="pd"></div>Business Continuity &amp; Resilience</div>
+ <div class="pr"><div class="pd"></div>Sustainability &amp; ESG Advisory</div>
+ <div class="pr"><div class="pd"></div>Geopolitical Risk &amp; Advisory</div>
+ </div>
+ </div>
+ </div>
+</section>
+
+<!-- TICKER -->
+<div class="ticker">
+ <div class="t-track">
+ <div class="t-item"><span class="g">◆</span> Enterprise Risk Management</div>
+ <div class="t-item" style="color:rgba(176,141,87,.35)">·</div>
+ <div class="t-item"><span class="g">◆</span> Governance Frameworks</div>
+ <div class="t-item" style="color:rgba(176,141,87,.35)">·</div>
+ <div class="t-item"><span class="g">◆</span> Business Continuity</div>
+ <div class="t-item" style="color:rgba(176,141,87,.35)">·</div>
+ <div class="t-item"><span class="g">◆</span> Project Portfolio Management</div>
+ <div class="t-item" style="color:rgba(176,141,87,.35)">·</div>
+ <div class="t-item"><span class="g">◆</span> Sustainability Strategy</div>
+ <div class="t-item" style="color:rgba(176,141,87,.35)">·</div>
+ <div class="t-item"><span class="g">◆</span> ESG Reporting</div>
+ <div class="t-item" style="color:rgba(176,141,87,.35)">·</div>
+ <div class="t-item"><span class="g">◆</span> Resilience Planning</div>
+ <div class="t-item" style="color:rgba(176,141,87,.35)">·</div>
+ <div class="t-item"><span class="g">◆</span> Organizational Transformation</div>
+ <div class="t-item" style="color:rgba(176,141,87,.35)">·</div>
+ <div class="t-item"><span class="g">◆</span> Geopolitical Risk Advisory</div>
+ <div class="t-item" style="color:rgba(176,141,87,.35)">·</div>
+ <div class="t-item"><span class="g">◆</span> Caribbean &amp; North America</div>
+ <div class="t-item" style="color:rgba(176,141,87,.35)">·</div>
+ <!-- duplicate -->
+ <div class="t-item"><span class="g">◆</span> Enterprise Risk Management</div>
+ <div class="t-item" style="color:rgba(176,141,87,.35)">·</div>
+ <div class="t-item"><span class="g">◆</span> Governance Frameworks</div>
+ <div class="t-item" style="color:rgba(176,141,87,.35)">·</div>
+ <div class="t-item"><span class="g">◆</span> Business Continuity</div>
+ <div class="t-item" style="color:rgba(176,141,87,.35)">·</div>
+ <div class="t-item"><span class="g">◆</span> Project Portfolio Management</div>
+ <div class="t-item" style="color:rgba(176,141,87,.35)">·</div>
+ <div class="t-item"><span class="g">◆</span> Sustainability Strategy</div>
+ <div class="t-item" style="color:rgba(176,141,87,.35)">·</div>
+ <div class="t-item"><span class="g">◆</span> ESG Reporting</div>
+ <div class="t-item" style="color:rgba(176,141,87,.35)">·</div>
+ <div class="t-item"><span class="g">◆</span> Resilience Planning</div>
+ <div class="t-item" style="color:rgba(176,141,87,.35)">·</div>
+ <div class="t-item"><span class="g">◆</span> Organizational Transformation</div>
+ <div class="t-item" style="color:rgba(176,141,87,.35)">·</div>
+ <div class="t-item"><span class="g">◆</span> Geopolitical Risk Advisory</div>
+ <div class="t-item" style="color:rgba(176,141,87,.35)">·</div>
+ <div class="t-item"><span class="g">◆</span> Caribbean &amp; North America</div>
+ <div class="t-item" style="color:rgba(176,141,87,.35)">·</div>
+ </div>
+</div>
+
+<!-- ABOUT -->
+<section id="about">
+ <div class="wrap">
+ <div class="about-g">
+ <div class="about-sticky rv">
+ <div class="eyebrow">Who We Are</div>
+ <h2 class="disp">Strategic Insight.<br><em>Practical Execution.</em></h2>
+ <div style="height:22px"></div>
+ <p class="lead">CorpRisk Sustainability Advisors is a strategic risk and sustainability consultancy dedicated to strengthening enterprise performance through integrated governance, project management, business continuity and resilience frameworks.</p>
+ <div style="height:30px"></div>
+ <a href="#contact" class="btn btn-n" onclick="document.getElementById('contact').scrollIntoView({behavior:'smooth'});document.getElementById('contact-form').focus();return false;">Work With Us <svg viewBox="0 0 14 14" fill="none"><path d="M1 7h12M7 1l6 6-6 6" stroke="currentColor" stroke-width="1.5" stroke-linecap="round"/></svg></a>
+ </div>
+ <div>
+ <div class="ablock rv d1">
+ <div class="ablock-n">01 / Our Purpose</div>
+ <h3>Dedicated to Strengthening Enterprise Performance</h3>
+ <p>We exist to help organizations build the internal capability to perform consistently. even under pressure. Our advisory practice is built around the conviction that governance, risk, and sustainability are not compliance obligations. They are the architecture of lasting enterprise value.</p>
+ </div>
+ <div class="ablock rv d2">
+ <div class="ablock-n">02 / Our Approach</div>
+ <h3>Navigating Uncertainty with Integrated Frameworks</h3>
+ <p>We partner with organizations to navigate uncertainty by designing governance structures and resilience frameworks that are practical, scalable, and embedded into day-to-day operations rather than imposed from the outside. Our advisory combines strategic insight with hands-on execution at every level.</p>
+ </div>
+ <div class="ablock rv d3">
+ <div class="ablock-n">03 / Our Scope</div>
+ <h3>Cross-Sector. Cross-Function. Enterprise-Wide.</h3>
+ <p>CorpRisk serves organizations across the <strong>Caribbean and North America</strong>, from financial services and infrastructure to public institutions and growth-stage enterprises. Our geographic reach spans the English and Spanish-speaking Caribbean, including Trinidad &amp; Tobago, Barbados, Jamaica and Guyana, as well as Canada and the United States. We work across risk, strategy, operations, project delivery and sustainability, ensuring alignment from the boardroom to the project floor.</p>
+ </div>
+ <div class="ablock rv d4">
+ <div class="ablock-n">04 / Our Commitment</div>
+ <h3>Long-Term Value Creation as the True North</h3>
+ <p>Every engagement is designed with one goal: ensuring that project portfolios, enterprise risks, and sustainability objectives are aligned to drive long-term value. We measure success not in reports delivered, but in organizations that perform better, recover faster and sustain more.</p>
+ </div>
+ </div>
+ </div>
+ </div>
+</section>
+
+
+<!-- GEO REACH BAND -->
+<div style="background:var(--navy);padding:52px 0;border-top:1px solid rgba(176,141,87,0.15);border-bottom:1px solid rgba(176,141,87,0.15)">
+ <div class="wrap">
+ <div style="display:grid;grid-template-columns:auto 1fr;gap:48px;align-items:center">
+ <div>
+ <div style="font-size:10px;font-weight:600;letter-spacing:4px;text-transform:uppercase;color:var(--gold);margin-bottom:12px;display:flex;align-items:center;gap:10px">
+ <span style="display:block;width:24px;height:1.5px;background:var(--gold)"></span>
+ Geographic Reach
+ </div>
+ <div style="font-family:var(--fd);font-size:clamp(22px,2.5vw,32px);font-weight:600;color:var(--white);line-height:1.2">
+ Serving Clients Across the<br><em style="color:var(--gold);font-weight:400">Caribbean &amp; North America</em>
+ </div>
+ </div>
+ <div style="display:grid;grid-template-columns:repeat(4,1fr);gap:1px;background:rgba(255,255,255,0.07)">
+ <div style="background:rgba(255,255,255,0.03);padding:24px 22px;border-left:2px solid var(--gold)">
+ <div style="font-size:11px;font-weight:600;letter-spacing:2px;text-transform:uppercase;color:var(--gold);margin-bottom:8px">Headquarters</div>
+ <div style="font-size:14px;font-weight:300;color:rgba(255,255,255,0.8);line-height:1.6">Trinidad &amp; Tobago<br>San Fernando</div>
+ </div>
+ <div style="background:rgba(255,255,255,0.03);padding:24px 22px">
+ <div style="font-size:11px;font-weight:600;letter-spacing:2px;text-transform:uppercase;color:var(--gold);margin-bottom:8px">Caribbean</div>
+ <div style="font-size:14px;font-weight:300;color:rgba(255,255,255,0.8);line-height:1.6">Barbados · Jamaica<br>Guyana · OECS</div>
+ </div>
+ <div style="background:rgba(255,255,255,0.03);padding:24px 22px">
+ <div style="font-size:11px;font-weight:600;letter-spacing:2px;text-transform:uppercase;color:var(--gold);margin-bottom:8px">North America</div>
+ <div style="font-size:14px;font-weight:300;color:rgba(255,255,255,0.8);line-height:1.6">United States<br>Canada</div>
+ </div>
+ <div style="background:rgba(255,255,255,0.03);padding:24px 22px">
+ <div style="font-size:11px;font-weight:600;letter-spacing:2px;text-transform:uppercase;color:var(--gold);margin-bottom:8px">Delivery</div>
+ <div style="font-size:14px;font-weight:300;color:rgba(255,255,255,0.8);line-height:1.6">On-site &amp; Remote<br>Engagements</div>
+ </div>
+ </div>
+ </div>
+ </div>
+</div>
+
+<!-- SERVICES -->
+<section id="services">
+ <div class="wrap">
+ <div class="sv-intro">
+ <div class="rv">
+ <div class="eyebrow">What We Do</div>
+ <h2 class="disp">Six Practice Areas.<br><em>One Integrated Vision.</em></h2>
+ </div>
+ <div class="sv-ir rv d2">
+ <p class="lead" style="max-width:380px">Our advisory approach combines strategic insight with practical execution, ensuring that risk, governance, sustainability, and project management work together as a single performance system. Each engagement is tailored to your organization's size, sector, and maturity from initial framework design through to full implementation and team capability-building.</p>
+ </div>
+ </div>
+ <div>
+ <div class="sv-item rv">
+ <div class="sv-n">01</div>
+ <div class="sv-c">
+ <h3>Enterprise Risk Management</h3>
+ <p>We design and implement integrated ERM frameworks that give organizations a clear, enterprise-wide view of risk, enabling leadership to make informed decisions, satisfy governance requirements, and build institutional resilience. From risk appetite statements to risk registers and board reporting, we make risk management a strategic asset.</p>
+ <div class="sv-tags"><span class="sv-tag">ERM Frameworks</span><span class="sv-tag">Risk Appetite</span><span class="sv-tag">Risk Registers</span><span class="sv-tag">Board Reporting</span><span class="sv-tag">Regulatory Compliance</span></div>
+ </div>
+ <div class="sv-arr">→</div>
+ </div>
+ <div class="sv-item rv d1">
+ <div class="sv-n">02</div>
+ <div class="sv-c">
+ <h3>Geopolitical Risk &amp; Advisory</h3>
+ <p>Geopolitical risk is no longer the domain of governments alone. It is a board-level enterprise concern. We design Enterprise Geopolitical Risk Frameworks that give organizations structured intelligence, scenario planning capability, and decision protocols to anticipate and respond to geopolitical disruption before it becomes a crisis.</p>
+ <div class="sv-tags"><span class="sv-tag">Geopolitical Risk Frameworks</span><span class="sv-tag">Scenario Planning</span><span class="sv-tag">Political Risk Assessment</span><span class="sv-tag">Sanctions Exposure</span><span class="sv-tag">Supply Chain Risk</span><span class="sv-tag">War-Gaming</span></div>
+ </div>
+ <div class="sv-arr">→</div>
+ </div>
+ <div class="sv-item rv d2">
+ <div class="sv-n">03</div>
+ <div class="sv-c">
+ <h3>Project Management &amp; Portfolio Oversight</h3>
+ <p>Poorly governed project portfolios are one of the most common destroyers of enterprise value. We establish PMO structures, portfolio governance frameworks, and project assurance processes that bring discipline, visibility, and accountability to how organizations plan, execute and deliver across every function and sector.</p>
+ <div class="sv-tags"><span class="sv-tag">PMO Design</span><span class="sv-tag">Portfolio Governance</span><span class="sv-tag">Project Assurance</span><span class="sv-tag">Delivery Frameworks</span><span class="sv-tag">Benefits Realisation</span></div>
+ </div>
+ <div class="sv-arr">→</div>
+ </div>
+ <div class="sv-item rv d3">
+ <div class="sv-n">04</div>
+ <div class="sv-c">
+ <h3>Business Continuity &amp; Resilience</h3>
+ <p>Organizations that survive shocks are those that prepared before the crisis arrived. We develop business continuity plans, crisis management frameworks, and resilience architectures that enable organizations to absorb disruption, protect critical functions, and recover with speed and confidence.</p>
+ <div class="sv-tags"><span class="sv-tag">Business Continuity Plans</span><span class="sv-tag">Crisis Management</span><span class="sv-tag">Resilience Architecture</span><span class="sv-tag">BIA &amp; Recovery</span></div>
+ </div>
+ <div class="sv-arr">→</div>
+ </div>
+ <div class="sv-item rv d4">
+ <div class="sv-n">05</div>
+ <div class="sv-c">
+ <h3>Sustainability &amp; ESG Strategy</h3>
+ <p>Sustainability is no longer optional. It is a strategic imperative that shapes access to capital, talent, and markets. We help organizations build credible ESG strategies, align sustainability goals with enterprise performance targets, and produce disclosure-ready reporting that satisfies investors, regulators, and stakeholders.</p>
+ <div class="sv-tags"><span class="sv-tag">ESG Strategy</span><span class="sv-tag">Sustainability Reporting</span><span class="sv-tag">Materiality Assessment</span><span class="sv-tag">Stakeholder Engagement</span><span class="sv-tag">GRI · TCFD · CSRD</span></div>
+ </div>
+ <div class="sv-arr">→</div>
+ </div>
+ <div class="sv-item rv d5">
+ <div class="sv-n">06</div>
+ <div class="sv-c">
+ <h3>Organizational Transformation &amp; Change Management</h3>
+ <p>Frameworks only work when people adopt them. We support organizations through the human dimension of change by designing communications, training programmes, and adoption strategies that embed new governance, risk, and sustainability practices into organizational culture and daily operations.</p>
+ <div class="sv-tags"><span class="sv-tag">Change Management</span><span class="sv-tag">Capacity Building</span><span class="sv-tag">Training &amp; Workshops</span><span class="sv-tag">Culture &amp; Adoption</span></div>
+ </div>
+ <div class="sv-arr">→</div>
+ </div>
+
+ </div>
+ </div>
+</section>
+
+
+<!-- HOW WE WORK -->
+<div style="background:var(--cream);padding:64px 0;border-top:1px solid var(--rule);border-bottom:1px solid var(--rule)">
+ <div class="wrap">
+ <div style="text-align:center;margin-bottom:44px">
+ <div class="eyebrow" style="justify-content:center">Our Approach</div>
+ <h2 class="disp">How We Work With You</h2>
+ </div>
+ <div style="display:grid;grid-template-columns:repeat(4,1fr);gap:1px;background:var(--rule)">
+ <div style="background:var(--white);padding:32px 28px;position:relative">
+ <div style="font-family:var(--fd);font-size:36px;font-weight:600;color:var(--cream);line-height:1;margin-bottom:12px">01</div>
+ <div style="font-family:var(--fd);font-size:17px;font-weight:600;color:var(--navy);margin-bottom:10px">Diagnose</div>
+ <p style="font-size:13.5px;font-weight:300;line-height:1.75;color:var(--body)">We begin with a structured diagnostic of your current risk, governance, and sustainability landscape identifying gaps, priorities, and quick wins before any framework is designed.</p>
+ </div>
+ <div style="background:var(--white);padding:32px 28px;border-left:1px solid var(--rule)">
+ <div style="font-family:var(--fd);font-size:36px;font-weight:600;color:var(--cream);line-height:1;margin-bottom:12px">02</div>
+ <div style="font-family:var(--fd);font-size:17px;font-weight:600;color:var(--navy);margin-bottom:10px">Design</div>
+ <p style="font-size:13.5px;font-weight:300;line-height:1.75;color:var(--body)">Working collaboratively with your leadership team, we design frameworks, governance structures, and operating models that are practical, scalable, and built for your organization specifically.</p>
+ </div>
+ <div style="background:var(--white);padding:32px 28px;border-left:1px solid var(--rule)">
+ <div style="font-family:var(--fd);font-size:36px;font-weight:600;color:var(--cream);line-height:1;margin-bottom:12px">03</div>
+ <div style="font-family:var(--fd);font-size:17px;font-weight:600;color:var(--navy);margin-bottom:10px">Implement</div>
+ <p style="font-size:13.5px;font-weight:300;line-height:1.75;color:var(--body)">We work alongside your teams during implementation not handing over a document and leaving, but supporting adoption, resolving obstacles, and ensuring the framework takes root in daily operations.</p>
+ </div>
+ <div style="background:var(--white);padding:32px 28px;border-left:1px solid var(--rule)">
+ <div style="font-family:var(--fd);font-size:36px;font-weight:600;color:var(--cream);line-height:1;margin-bottom:12px">04</div>
+ <div style="font-family:var(--fd);font-size:17px;font-weight:600;color:var(--navy);margin-bottom:10px">Sustain</div>
+ <p style="font-size:13.5px;font-weight:300;line-height:1.75;color:var(--body)">We build internal capability so your organization can own and evolve the frameworks independently. Training, documentation, and ongoing advisory support are available throughout the engagement lifecycle.</p>
+ </div>
+ </div>
+ </div>
+</div>
+
+
+
+
+
+<section id="contact">
+ <div class="wrap">
+ <div class="ct-g">
+ <div class="ct-sticky rv">
+ <div class="eyebrow">Get In Touch</div>
+ <h2 class="disp">Let's Start a <em>Conversation</em></h2>
+ <div style="height:18px"></div>
+ <p class="lead">Whether you are designing a governance framework, establishing a PMO, stress-testing your business continuity plans, or building your ESG strategy, we work with organizations across the Caribbean and North America and would like to hear from you.</p>
+ <div style="margin-top:30px">
+ <div class="ct-d"><div class="ct-dk">HQ</div><div class="ct-dv">San Fernando, Trinidad &amp; Tobago</div></div><div class="ct-d"><div class="ct-dk">Reach</div><div class="ct-dv">Caribbean &amp; North America<br><span style="font-size:12px;color:var(--muted)">T&amp;T · Barbados · Jamaica · Guyana · OECS · USA · Canada</span></div></div>
+ <div class="ct-d"><div class="ct-dk">Email</div><div class="ct-dv"><a href="mailto:corpriskadvisor@gmail.com" style="color:var(--navy);border-bottom:1px solid var(--rule);padding-bottom:1px;transition:color .2s" onmouseover="this.style.color='var(--gold)'" onmouseout="this.style.color='var(--navy)'">corpriskadvisor@gmail.com</a></div></div>
+ <div class="ct-d"><div class="ct-dk">LinkedIn</div><div class="ct-dv">linkedin.com/company/corprisk</div></div>
+ <div class="ct-d"><div class="ct-dk">Engagements</div><div class="ct-dv">Retained advisory, project-based mandates, workshops and training. Initial consultations by appointment.</div></div>
+ </div>
+ </div>
+ <div class="rv d2">
+ <form id="contact-form" onsubmit="handleSubmit(event)">
+ <div class="f-lbl">Enquiry Form</div>
+ <div class="f-row">
+ <div class="fg"><label>First Name *</label><input type="text" placeholder="Jane" required></div>
+ <div class="fg"><label>Last Name *</label><input type="text" placeholder="Smith" required></div>
+ </div>
+ <div class="f-row">
+ <div class="fg"><label>Email Address *</label><input type="email" placeholder="jane@organisation.com" required></div>
+ <div class="fg"><label>Organisation</label><input type="text" placeholder="Your Organisation"></div>
+ </div>
+ <div class="f-row full">
+ <div class="fg"><label>Sector</label>
+ <select>
+ <option value="" disabled selected>Select your sector</option>
+ <option>Financial Services &amp; Banking</option>
+ <option>Infrastructure &amp; Utilities</option>
+ <option>Public Sector &amp; Government</option>
+ <option>Energy &amp; Resources</option>
+ <option>Healthcare &amp; Life Sciences</option>
+ <option>Manufacturing &amp; Logistics</option>
+ <option>Technology &amp; Telecommunications</option>
+ <option>Professional Services</option>
+ <option>Other</option>
+ </select>
+ </div>
+ </div>
+ <div class="f-row full">
+ <div class="fg"><label>Area of Interest</label>
+ <select>
+ <option value="" disabled selected>Select a practice area</option>
+ <option>Enterprise Risk Management</option>
+ <option>Project Management &amp; Portfolio Oversight</option>
+ <option>Business Continuity &amp; Resilience</option>
+ <option>Sustainability &amp; ESG Strategy</option>
+ <option>Organizational Transformation</option>
+<option>Geopolitical Risk &amp; Advisory</option>
+ <option>General Enquiry</option>
+ </select>
+ </div>
+ </div>
+ <div class="f-row full">
+ <div class="fg"><label>Message *</label><textarea rows="5" placeholder="Please describe your challenge or the nature of your enquiry..." required></textarea></div>
+ </div>
+ <div class="f-foot">
+ <div class="f-priv">Your information is treated in strict confidence and will not be shared with third parties.</div>
+ <button type="submit" class="btn btn-n" id="sub">Submit Enquiry <svg viewBox="0 0 14 14" fill="none"><path d="M1 7h12M7 1l6 6-6 6" stroke="currentColor" stroke-width="1.5" stroke-linecap="round"/></svg></button>
+ </div>
+ </form>
+ </div>
+ </div>
+ </div>
+</section>
+
+<!-- FOOTER -->
+<footer>
+ <div class="wrap">
+ <div class="ft-top">
+ <div class="ft-brand-block">
+ <div class="ft-wm">CorpRisk</div>
+ <div class="ft-tl">Sustainability Advisors</div>
+ <div class="ft-desc">A strategic risk and sustainability consultancy serving organizations across the Caribbean and North America, dedicated to strengthening enterprise performance through integrated governance, project management, business continuity and resilience frameworks.</div>
+ </div>
+ <div class="ft-col"><h4>Services</h4><ul>
+ <li><a href="#services">Enterprise Risk Management</a></li>
+ <li><a href="#services">Geopolitical Risk Advisory</a></li>
+ <li><a href="#services">Project &amp; Portfolio Management</a></li>
+ <li><a href="#services">Business Continuity</a></li>
+ <li><a href="#services">Sustainability &amp; ESG</a></li>
+ <li><a href="#services">Geopolitical Risk Advisory</a></li>
+ </ul></div>
+ 
+ <div class="ft-col"><h4>Company</h4><ul>
+ <li><a href="#about">About</a></li>
+ 
+ <li><a href="#contact">Contact</a></li>
+ <li><a href="https://www.linkedin.com/company/corprisk" target="_blank" rel="noopener" target="_blank" rel="noopener">LinkedIn</a></li>
+ </ul></div>
+ </div>
+ <div class="ft-bot">
+ <div class="ft-copy">© 2025 CorpRisk Sustainability Advisors. All rights reserved.</div>
+ <div class="ft-leg"><a href="#contact">Privacy Policy</a><a href="#contact">Terms of Use</a><a href="#contact">Disclaimer</a></div>
+ </div>
+ </div>
+</footer>
+
+<script>
+const nav=document.getElementById('nav');
+const secs=document.querySelectorAll('section[id]');
+const lnks=document.querySelectorAll('.nav-ul a');
+window.addEventListener('scroll',()=>{
+ nav.classList.toggle('up',window.scrollY>20);
+ let cur='';
+ secs.forEach(s=>{if(window.scrollY>=s.offsetTop-100)cur=s.id});
+ lnks.forEach(a=>a.classList.toggle('on',a.getAttribute('href')==='#'+cur));
+});
+const obs=new IntersectionObserver(e=>{e.forEach(x=>{if(x.isIntersecting)x.target.classList.add('in')})},{threshold:.10});
+document.querySelectorAll('.rv').forEach(el=>obs.observe(el));
+function handleSubmit(e){
+ e.preventDefault();
+ const form = e.target;
+ const name = form.querySelector('input[placeholder="Jane"]').value + ' ' + form.querySelector('input[placeholder="Smith"]').value;
+ const email = form.querySelector('input[type="email"]').value;
+ const org = form.querySelector('input[placeholder="Your Organisation"]').value;
+ const msg = form.querySelector('textarea').value;
+ const subject = encodeURIComponent('CorpRisk Enquiry from ' + name + (org ? ' at ' + org : ''));
+ const body = encodeURIComponent('Name: ' + name + '\nOrganisation: ' + org + '\nEmail: ' + email + '\n\nMessage:\n' + msg);
+ window.location.href = 'mailto:corpriskadvisor@gmail.com?subject=' + subject + '&body=' + body;
+ const b=document.getElementById('sub');
+ b.innerHTML='✓ Opening Email Client...';b.style.background='#2A6B4A';b.disabled=true;
+ setTimeout(()=>{
+ b.innerHTML='Submit Enquiry <svg viewBox="0 0 14 14" fill="none" style="width:14px;height:14px"><path d="M1 7h12M7 1l6 6-6 6" stroke="currentColor" stroke-width="1.5" stroke-linecap="round"/></svg>';
+ b.style.background='';b.disabled=false;form.reset();
+ },4000);
+}
+</script>
+</body>
+</html>
